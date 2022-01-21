@@ -25,13 +25,12 @@ public class UnityController implements UnitsApi {
 
     @Override
     public CompletableFuture<ResponseEntity<UnityDTO>> createUnity(CreateUnityDTO createUnityDTO) {
-        return supplyAsync(() -> unityService
-            .createUnity(createUnityDTO), controllersExecutor)
+        return supplyAsync(() -> unityService.createUnity(createUnityDTO), controllersExecutor)
             .thenApply(ResponseEntityUtils::created);
     }
 
     @Override
-    public CompletableFuture<ResponseEntity<List<UnityDTO>>> listUnity(String owner, String condominium, String address) {
+    public CompletableFuture<ResponseEntity<List<UnityDTO>>> listUnity() {
         return supplyAsync(unityService::listUnits, controllersExecutor).thenApply(ResponseEntityUtils::ok);
     }
 }

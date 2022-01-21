@@ -17,11 +17,11 @@ CREATE TABLE `units` (
 );
 
 CREATE TABLE `unit_expenses` (
-  `id_unit_expenses`         BIGINT        NOT NULL AUTO_INCREMENT,
+  `id`                       BIGINT        NOT NULL AUTO_INCREMENT,
   `unit_expense_description` VARCHAR(100)  NOT NULL,
   `type_expense`             VARCHAR(45)   NOT NULL,
   `amount`                   DECIMAL(10,2) NOT NULL,
   `invoice_due_date`         DATE          NOT NULL,
   `payment_status`           VARCHAR(20)   NOT NULL,
-  PRIMARY KEY (`id_unit_expenses`)
+  PRIMARY KEY (`id`)
 );

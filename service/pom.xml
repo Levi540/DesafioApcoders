@@ -125,7 +125,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>br.com.apcoders.desafioapcoders.Application</mainClass>
+                    <mainClass>br.com.apcoders.desafio.Application</mainClass>
                 </configuration>
             </plugin>
             <plugin>

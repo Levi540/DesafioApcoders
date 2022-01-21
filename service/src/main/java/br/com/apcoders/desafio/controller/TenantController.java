@@ -24,14 +24,13 @@ public class TenantController implements TenantsApi {
     }
 
     @Override
-    public CompletableFuture<ResponseEntity<List<TenantDTO>>> listTenant(String name, Integer age, String sex, String telephone, String email) {
+    public CompletableFuture<ResponseEntity<List<TenantDTO>>> listTenant() {
         return supplyAsync(tenantService::listTenant, controllersExecutor).thenApply(ResponseEntityUtils::ok);
     }
 
     @Override
     public CompletableFuture<ResponseEntity<TenantDTO>> createTenant(CreateTenantDTO createTenantDTO) {
-        return supplyAsync(() -> tenantService
-            .createTenant(createTenantDTO), controllersExecutor)
+        return supplyAsync(() -> tenantService.createTenant(createTenantDTO), controllersExecutor)
             .thenApply(ResponseEntityUtils::created);
     }
 }

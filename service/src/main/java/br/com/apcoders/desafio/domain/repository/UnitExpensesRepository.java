@@ -11,16 +11,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UnitExpensesRepository extends JpaRepository<UnitExpense, Long> {
-
     @Query(
         "SELECT ue FROM UnitExpense ue WHERE " +
         "(:idUnity IS NULL OR ue.idUnity = :idUnity) AND " +
         "(:invoiceDueDate IS NULL OR ue.invoiceDueDate < :invoiceDueDate)"
     )
-    List<UnitExpense> findAllWithFilters(
-        @Param("idUnity") Long idUnity,
-        @Param("invoiceDueDate") LocalDate invoiceDueDate
-    );
+    List<UnitExpense> findAllWithFilters(@Param("idUnity") Long idUnity, @Param("invoiceDueDate") LocalDate invoiceDueDate);
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query(

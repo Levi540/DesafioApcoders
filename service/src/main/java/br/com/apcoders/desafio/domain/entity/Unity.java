@@ -73,19 +73,28 @@ public class Unity {
 
     @Override
     public String toString() {
-        return "Unity{" +
-                "id=" + id +
-                ", owner='" + owner + '\'' +
-                ", condominium='" + condominium + '\'' +
-                ", address='" + address + '\'' +
-                ", idTenant=" + idTenant +
-                '}';
+        return (
+            "Unity{" +
+            "id=" +
+            id +
+            ", owner='" +
+            owner +
+            '\'' +
+            ", condominium='" +
+            condominium +
+            '\'' +
+            ", address='" +
+            address +
+            '\'' +
+            ", idTenant=" +
+            idTenant +
+            '}'
+        );
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
-
 
     public static final class Builder {
         private Long id;

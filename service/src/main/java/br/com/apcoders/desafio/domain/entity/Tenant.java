@@ -82,14 +82,26 @@ public class Tenant {
 
     @Override
     public String toString() {
-        return "Tenant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return (
+            "Tenant{" +
+            "id=" +
+            id +
+            ", name='" +
+            name +
+            '\'' +
+            ", age=" +
+            age +
+            ", sex='" +
+            sex +
+            '\'' +
+            ", telephone='" +
+            telephone +
+            '\'' +
+            ", email='" +
+            email +
+            '\'' +
+            '}'
+        );
     }
 
     public static Builder newBuilder() {

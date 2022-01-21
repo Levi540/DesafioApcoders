@@ -28,22 +28,19 @@ public class UnitExpenseController implements UnitExpensesApi {
 
     @Override
     public CompletableFuture<ResponseEntity<UnitExpenseDTO>> createUnitExpense(CreateUnitExpenseDTO createUnitExpenseDTO) {
-        return supplyAsync(() -> unitExpenseService
-            .createUnitExpense(createUnitExpenseDTO), controllersExecutor)
+        return supplyAsync(() -> unitExpenseService.createUnitExpense(createUnitExpenseDTO), controllersExecutor)
             .thenApply(ResponseEntityUtils::created);
     }
 
     @Override
     public CompletableFuture<ResponseEntity<List<UnitExpenseDTO>>> listUnitExpenses(Long idUnity, LocalDate invoiceDueDate) {
-        return supplyAsync(() -> unitExpenseService
-            .listUnitExpense(idUnity, invoiceDueDate), controllersExecutor)
+        return supplyAsync(() -> unitExpenseService.listUnitExpense(idUnity, invoiceDueDate), controllersExecutor)
             .thenApply(ResponseEntityUtils::ok);
     }
 
     @Override
     public CompletableFuture<ResponseEntity<Void>> updateUnitExpense(Long id, UpdateUnitExpenseDTO updateUnitExpenseDTO) {
-        return runAsync(() -> unitExpenseService
-            .updateUnitExpense(id, updateUnitExpenseDTO), controllersExecutor)
+        return runAsync(() -> unitExpenseService.updateUnitExpense(id, updateUnitExpenseDTO), controllersExecutor)
             .thenApply(ResponseEntityUtils::noContent);
     }
 }

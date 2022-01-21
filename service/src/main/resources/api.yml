@@ -1,0 +1,246 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: 'desafioapcoders'
+servers:
+  - url: 'localhost:3000'
+paths:
+  /tenants:
+    get:
+      summary: 'Tenant list'
+      operationId: listTenant
+      tags:
+        - tanant
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TenantDTO'
+
+    post:
+      summary: 'Creates a tenant'
+      operationId: createTenant
+      tags:
+        - tenant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantDTO'
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantDTO'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+
+  /units:
+    get:
+      summary: 'Unity list'
+      operationId: listUnity
+      tags:
+        - unit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnityDTO'
+
+    post:
+      summary: 'Creates a unity'
+      operationId: createUnity
+      tags:
+        - unity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUnityDTO'
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnityDTO'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+
+  /unit-expenses:
+    get:
+      summary: 'Unit expenses list'
+      operationId: listUnitExpenses
+      tags:
+        - unitexpense
+      parameters:
+        - name: id_unity
+          in: query
+          description: Id of the unity
+          schema:
+            type: integer
+            format: int64
+        - name: invoice_due_date
+          in: query
+          description: Invoice due date
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UnitExpenseDTO'
+
+    post:
+      summary: 'Creates a unit expense'
+      operationId: createUnitExpense
+      tags:
+        - unitexpense
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUnitExpenseDTO'
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnitExpenseDTO'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+
+  /unit-expenses/{id}:
+    put:
+      summary: 'Updates a unit expense by ID'
+      operationId: updateUnitExpense
+      tags:
+        - unitexpense
+      parameters:
+        - name: id
+          in: path
+          description: ID of the unit expense
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUnitExpenseDTO'
+      responses:
+        '204':
+          description: 'Deleted successfully'
+        404:
+          description: Not Found
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+
+components:
+  schemas:
+    CreateTenantDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+        sex:
+          type: string
+          format: varchar(1)
+        telephone:
+          type: string
+        email:
+          type: string
+
+    TenantDTO:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CreateTenantDTO'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+
+    CreateUnityDTO:
+      type: object
+      properties:
+        owner:
+          type: string
+        condominium:
+          type: string
+        address:
+          type: string
+        id_tenant:
+          type: integer
+          format: int64
+
+    UnityDTO:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CreateUnityDTO'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+
+    UpdateUnitExpenseDTO:
+      type: object
+      properties:
+        unit_expense_description:
+          type: string
+        type_expense:
+          type: string
+        amount:
+          type: number
+          format: double
+        invoice_due_date:
+          type: string
+          format: date
+        payment_status:
+          type: string
+        id_unity:
+          type: integer
+          format: int64
+
+    CreateUnitExpenseDTO:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/UpdateUnitExpenseDTO'
+
+    UnitExpenseDTO:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CreateUnitExpenseDTO'
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+
+  responses:
+    UnprocessableEntity:
+      description: The server understands the content type of the request entity but was unable to process
+        the conteined instructions.

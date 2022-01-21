@@ -20,10 +20,7 @@ public class TenantService {
 
     public List<TenantDTO> listTenant() {
         var tenants = tenantRepository.findAll();
-        return tenants
-            .stream()
-            .map(tenantMapper::fromEntityToDto)
-            .collect(Collectors.toList());
+        return tenants.stream().map(tenantMapper::fromEntityToDto).collect(Collectors.toList());
     }
 
     public TenantDTO createTenant(CreateTenantDTO createTenantDTO) {

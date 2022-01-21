@@ -100,21 +100,32 @@ public class UnitExpense {
 
     @Override
     public String toString() {
-        return "UnitExpense{" +
-                "id=" + id +
-                ", unitExpenseDescription='" + unitExpenseDescription + '\'' +
-                ", typeExpense='" + typeExpense + '\'' +
-                ", amount=" + amount +
-                ", invoiceDueDate=" + invoiceDueDate +
-                ", paymentStatus='" + paymentStatus + '\'' +
-                ", idUnity=" + idUnity +
-                '}';
+        return (
+            "UnitExpense{" +
+            "id=" +
+            id +
+            ", unitExpenseDescription='" +
+            unitExpenseDescription +
+            '\'' +
+            ", typeExpense='" +
+            typeExpense +
+            '\'' +
+            ", amount=" +
+            amount +
+            ", invoiceDueDate=" +
+            invoiceDueDate +
+            ", paymentStatus='" +
+            paymentStatus +
+            '\'' +
+            ", idUnity=" +
+            idUnity +
+            '}'
+        );
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
-
 
     public static final class Builder {
         private Long id;
